@@ -7,17 +7,17 @@
 
     <changeSet id="002" author="krefature">
         <!--Почему-то не создается она при инициализации -->
-        <addColumn tableName="products">
-            <column name="category" type="VARCHAR(100)" defaultValue="Uncategorized">
-                <constraints nullable="false"/>
-            </column>
-        </addColumn>
+<!--        <addColumn tableName="products">-->
+<!--            <column name="category" type="VARCHAR(100)" defaultValue="Uncategorized">-->
+<!--                <constraints nullable="false"/>-->
+<!--            </column>-->
+<!--        </addColumn>-->
         <insert tableName="products">
             <column name="name" value="Eclair"/>
             <column name="description" value="Нежный эклер с хрустящей глазурью и воздушным заварным кремом."/>
             <column name="price" value="4.99"/>
             <column name="image_url" value="https://example.com/images/eclair.jpg"/>
-            <column name="category" value="Sweets"/>
+            <column name="category" value="Desserts"/>
         </insert>
 
         <insert tableName="products">
