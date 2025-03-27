@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+
+    <changeSet id="002" author="krefature">
+        <!--Почему-то не создается она при инициализации -->
+        <addColumn tableName="products">
+            <column name="category" type="VARCHAR(100)" defaultValue="Uncategorized">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <insert tableName="products">
+            <column name="name" value="Eclair"/>
+            <column name="description" value="Нежный эклер с хрустящей глазурью и воздушным заварным кремом."/>
+            <column name="price" value="4.99"/>
+            <column name="image_url" value="https://example.com/images/eclair.jpg"/>
+            <column name="category" value="Sweets"/>
+        </insert>
+
+        <insert tableName="products">
+            <column name="name" value="Cappuccino"/>
+            <column name="description" value="Кофе с молочной пенкой и шоколадной крошкой"/>
+            <column name="price" value="3.80"/>
+            <column name="image_url" value="https://example.com/images/cappuccino.jpg"/>
+            <column name="category" value="Coffee"/>
+        </insert>
+
+        <insert tableName="products">
+            <column name="name" value="Cheesecake"/>
+            <column name="description" value="Нежный десерт из творожного сыра на песочной основе"/>
+            <column name="price" value="5.20"/>
+            <column name="image_url" value="https://example.com/images/cheesecake.jpg"/>
+            <column name="category" value="Desserts"/>
+        </insert>
+
+        <insert tableName="products">
+            <column name="name" value="Croissant"/>
+            <column name="description" value="Французская слоеная булочка с маслом"/>
+            <column name="price" value="2.90"/>
+            <column name="image_url" value="https://example.com/images/croissant.jpg"/>
+            <column name="category" value="Bakery"/>
+        </insert>
+
+        <insert tableName="products">
+            <column name="name" value="Latte"/>
+            <column name="description" value="Кофе с большим количеством молока и нежной пенкой"/>
+            <column name="price" value="4.10"/>
+            <column name="image_url" value="https://example.com/images/latte.jpg"/>
+            <column name="category" value="Coffee"/>
+        </insert>
+
+        <insert tableName="products">
+            <column name="name" value="Tiramisu"/>
+            <column name="description" value="Итальянский десерт с кофейной пропиткой и маскарпоне"/>
+            <column name="price" value="6.50"/>
+            <column name="image_url" value="https://example.com/images/tiramisu.jpg"/>
+            <column name="category" value="Desserts"/>
+        </insert>
+
+        <insert tableName="products">
+            <column name="name" value="Chicken Sandwich"/>
+            <column name="description" value="Свежий сэндвич с куриной грудкой и овощами"/>
+            <column name="price" value="7.30"/>
+            <column name="image_url" value="https://example.com/images/sandwich.jpg"/>
+            <column name="category" value="Snacks"/>
+        </insert>
+
+    </changeSet>
+</databaseChangeLog>
+
+
+
