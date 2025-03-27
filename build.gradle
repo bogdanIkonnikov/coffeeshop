@@ -5,6 +5,7 @@ buildscript {
     dependencies {
         classpath "org.liquibase:liquibase-gradle-plugin:2.2.0"
         classpath "org.liquibase.ext:liquibase-hibernate6:4.24.0"
+
     }
 }
 
@@ -14,7 +15,6 @@ plugins {
     id 'org.liquibase.gradle' version '2.2.0'
     id 'java'
 }
-apply plugin: 'org.liquibase.gradle'
 
 group = 'com.coffeeshop'
 version = '0.0.1-SNAPSHOT'
@@ -30,8 +30,6 @@ repositories {
 }
 
 dependencies {
-    //без нее в контроллере ошибки выдает
-    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
     // Spring Boot Core
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -64,12 +62,9 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
-configurations {
-}
-
 liquibase {
     activities {
-        main {
+        register('main') {
             changelogFile 'src/main/resources/db/changelog/db.changelog-master.xml'
             url 'jdbc:postgresql://localhost:5432/coffeeshopdb'
             username 'postgres'

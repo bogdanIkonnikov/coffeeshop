@@ -4,10 +4,14 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+    <include file="changes/001-initial-schema.xml" relativeToChangelogFile="true"/>
 
-    <include file="db/changelog/changes/001-initial-schema.xml"/>
-
-    <changeSet author="krefature (generated)" id="1742627807787-1">
-        <modifyDataType columnName="price" newDataType="number(38,2)" tableName="products"/>
+    <changeSet author="krefature (generated)" id="1743001945077-1">
+        <addColumn tableName="products">
+            <column name="category" type="varchar(100)" defaultValue="default_category">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
     </changeSet>
+
 </databaseChangeLog>
