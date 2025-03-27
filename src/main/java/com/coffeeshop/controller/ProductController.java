@@ -35,4 +35,9 @@ public class ProductController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+    @GetMapping("/category/{category}")
+    @Operation(summary = "Get products by category", description = "Returns all products from the specified category")
+    public ResponseEntity<List<ProductDTO>> getByCategory(@PathVariable String category) {
+        return ResponseEntity.ok(productService.getProductsByCategory(category));
+    }
 }

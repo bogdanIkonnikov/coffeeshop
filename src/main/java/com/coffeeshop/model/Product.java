@@ -33,4 +33,7 @@ public class Product {
     @Column(nullable = false)
     private boolean available = true;
 
+   @Column(length = 100, nullable = false)
+    private String category = "Unknown";
+
 }
