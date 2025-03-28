@@ -1,6 +1,7 @@
 package com.coffeeshop.service;
 
 import com.coffeeshop.dto.ProductDTO;
+import com.coffeeshop.model.Category;
 import com.coffeeshop.model.Product;
 import com.coffeeshop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class JpaProductService implements ProductService {
     }
 
     @Override
-    public List<ProductDTO> getProductsByCategory(String category) {
+    public List<ProductDTO> getProductsByCategoryId(Category category) {
         return productRepository.findByCategory(category).stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
@@ -48,6 +49,8 @@ public class JpaProductService implements ProductService {
         dto.setPrice(product.getPrice());
         dto.setImageUrl(product.getImageUrl());
         dto.setAvailable(product.isAvailable());
+        dto.setCategoryId(product.getCategory().getId());
+        dto.setCategoryName(product.getCategory().getName());
         return dto;
     }
 }

@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class Product {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,7 +34,9 @@ public class Product {
     @Column(nullable = false)
     private boolean available = true;
 
-   @Column(length = 100, nullable = false)
-    private String category = "Unknown";
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
 
 }

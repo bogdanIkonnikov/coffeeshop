@@ -1,6 +1,7 @@
 package com.coffeeshop.controller;
 
 import com.coffeeshop.dto.ProductDTO;
+import com.coffeeshop.model.Category;
 import com.coffeeshop.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -37,7 +38,7 @@ public class ProductController {
     }
     @GetMapping("/category/{category}")
     @Operation(summary = "Get products by category", description = "Returns all products from the specified category")
-    public ResponseEntity<List<ProductDTO>> getByCategory(@PathVariable String category) {
-        return ResponseEntity.ok(productService.getProductsByCategory(category));
+    public ResponseEntity<List<ProductDTO>> getByCategory(@PathVariable Category category) {
+        return ResponseEntity.ok(productService.getProductsByCategoryId(category));
     }
 }
