@@ -5,6 +5,8 @@ import com.coffeeshop.model.Category;
 import com.coffeeshop.model.Product;
 import com.coffeeshop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -23,10 +25,9 @@ public class JpaProductService implements ProductService {
     }
 
     @Override
-    public List<ProductDTO> getAllProducts() {
-        return productRepository.findAll().stream()
-                .map(this::convertToDTO)
-                .collect(Collectors.toList());
+    public Page<ProductDTO> getAllProducts(Pageable pageable) {
+        return productRepository.findAll(pageable)
+                .map(this::convertToDTO);
     }
 
     @Override

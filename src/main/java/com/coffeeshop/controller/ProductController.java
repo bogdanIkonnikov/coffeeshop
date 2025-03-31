@@ -6,11 +6,16 @@ import com.coffeeshop.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
+
+import static org.springframework.data.domain.Sort.Direction.ASC;
 
 @RestController
 @RequestMapping("/products")
@@ -24,11 +29,14 @@ public class ProductController {
         this.productService = productService;
     }
 
+
     @GetMapping
-    @Operation(summary = "Get all products", description = "Returns list of all products")
-    public ResponseEntity<List<ProductDTO>> getAllProducts() {
-        return ResponseEntity.ok(productService.getAllProducts());
+    @Operation(summary = "Get all products", description = "Returns sorted by name paginated list of all products")
+    public ResponseEntity<Page<ProductDTO>> getAllProducts(
+            @PageableDefault(sort = "name", direction = ASC) Pageable pageable) {
+        return ResponseEntity.ok(productService.getAllProducts(pageable));
     }
+
 
     @GetMapping("/{id}")
     @Operation(summary = "Get product by ID", description = "Returns a single product by its ID")
