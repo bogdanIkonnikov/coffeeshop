@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -39,6 +40,15 @@ public class ProductController {
     @GetMapping("/category/{category}")
     @Operation(summary = "Get products by category", description = "Returns all products from the specified category")
     public ResponseEntity<List<ProductDTO>> getByCategory(@PathVariable Category category) {
-        return ResponseEntity.ok(productService.getProductsByCategoryId(category));
+        return ResponseEntity.ok(productService.getProductsByCategory(category));
+    }
+
+    @GetMapping("/search")
+    public List<ProductDTO> searchProducts(
+            @RequestParam String name,
+            @RequestParam BigDecimal minPrice,
+            @RequestParam BigDecimal maxPrice
+    ) {
+        return productService.searchProducts(name, minPrice, maxPrice);
     }
 }

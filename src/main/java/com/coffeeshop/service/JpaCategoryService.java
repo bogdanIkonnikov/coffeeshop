@@ -21,6 +21,8 @@ public class JpaCategoryService implements CategoryService {
                 .collect(toList());
     }
 
+
+
     private CategoryDTO convertToDTO(Category category) {
         CategoryDTO dto = new CategoryDTO();
         dto.setId(category.getId());
