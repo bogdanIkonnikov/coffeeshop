@@ -37,10 +37,8 @@ public class JpaProductService implements ProductService {
     }
 
     @Override
-    public List<ProductDTO> getProductsByCategory(Category category) {
-        return productRepository.findByCategory(category).stream()
-                .map(this::convertToDTO)
-                .collect(Collectors.toList());
+    public Page<ProductDTO> getProductsByCategory(Long categoryId, Pageable pageable) {
+        return productRepository.findByCategory(categoryId, pageable).map(this::convertToDTO);
     }
     @Override
     public List<ProductDTO> searchProducts(String namePart, BigDecimal minPrice, BigDecimal maxPrice) {

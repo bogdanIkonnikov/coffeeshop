@@ -13,6 +13,6 @@ import java.util.Optional;
 public interface ProductService {
     Page<ProductDTO> getAllProducts(Pageable pageable);
     Optional<ProductDTO> getProductById(Long id);
-    List<ProductDTO> getProductsByCategory(Category category);
+    Page<ProductDTO> getProductsByCategory(Long categoryId, Pageable pageable);
     List<ProductDTO> searchProducts(String namePart, BigDecimal minPrice, BigDecimal maxPrice);
 }

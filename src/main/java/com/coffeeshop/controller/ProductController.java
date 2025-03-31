@@ -45,14 +45,16 @@ public class ProductController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
-    @GetMapping("/category/{category}")
-    @Operation(summary = "Get products by category", description = "Returns all products from the specified category")
-    public ResponseEntity<List<ProductDTO>> getByCategory(@PathVariable Category category) {
-        return ResponseEntity.ok(productService.getProductsByCategory(category));
+    @GetMapping("/category/{categoryId}")
+    @Operation(summary = "Get products by category ID", description = "Returns all products from the specified category")
+    public ResponseEntity<Page<ProductDTO>> getByCategoryId(@PathVariable Long categoryId,
+                                                          @PageableDefault(sort = "name", direction = ASC)
+                                                          Pageable pageable) {
+        return ResponseEntity.ok(productService.getProductsByCategory(categoryId, pageable));
     }
 
     @GetMapping("/search")
-    public List<ProductDTO> searchProducts(
+    public List<ProductDTO> getProductsByNameAndPriceRange(
             @RequestParam String name,
             @RequestParam BigDecimal minPrice,
             @RequestParam BigDecimal maxPrice

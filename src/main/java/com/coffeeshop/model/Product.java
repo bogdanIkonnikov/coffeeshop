@@ -35,7 +35,7 @@ public class Product {
     private boolean available = true;
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category")
     private Category category;
 
 

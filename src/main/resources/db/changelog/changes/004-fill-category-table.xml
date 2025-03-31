@@ -6,7 +6,6 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
 
     <changeSet id="004" author="krefature">
-
         <insert tableName="categories">
             <column name="id" value="1" />
             <column name="name" value="Desserts"/>
@@ -26,7 +25,6 @@
             <column name="id" value="4" />
             <column name="name" value="Bakery"/>
         </insert>
-
     </changeSet>
 </databaseChangeLog>
 
