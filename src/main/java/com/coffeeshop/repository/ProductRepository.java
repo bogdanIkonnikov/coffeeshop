@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByAvailableTrue();
-    Page<Product> findByCategory(Long categoryId, Pageable pageable);
+    Page<Product> findByCategoryId(Long categoryId, Pageable pageable);
     @Query("SELECT p FROM Product p " +
             "WHERE LOWER(p.name) LIKE LOWER(concat('%', :namePart, '%')) " +
             "AND p.price BETWEEN :minPrice AND :maxPrice")

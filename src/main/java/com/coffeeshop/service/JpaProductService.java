@@ -41,7 +41,7 @@ public class JpaProductService implements ProductService {
 
     @Override
     public Page<ProductDTO> getProductsByCategory(Long categoryId, Pageable pageable) {
-        Page<Product> page = productRepository.findByCategory(categoryId, pageable);
+        Page<Product> page = productRepository.findByCategoryId(categoryId, pageable);
         if (page.isEmpty()) {
             throw new EntityNotFoundException("Products not found with category id: " + categoryId);
         }
