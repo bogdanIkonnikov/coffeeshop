@@ -1,7 +1,7 @@
 package com.coffeeshop.service;
 
 import com.coffeeshop.dto.ProductDTO;
-import com.coffeeshop.model.Category;
+import com.coffeeshop.exception.custom.EntityNotFoundException;
 import com.coffeeshop.model.Product;
 import com.coffeeshop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,19 +32,29 @@ public class JpaProductService implements ProductService {
 
     @Override
     public Optional<ProductDTO> getProductById(Long id) {
-        return productRepository.findById(id)
-                .map(this::convertToDTO);
+        Optional<Product> product = productRepository.findById(id);
+        if (product.isEmpty()) {
+            throw new EntityNotFoundException("Product not found with id: " + id);
+        }
+        return product.map(this::convertToDTO);
     }
 
     @Override
     public Page<ProductDTO> getProductsByCategory(Long categoryId, Pageable pageable) {
-        return productRepository.findByCategory(categoryId, pageable).map(this::convertToDTO);
+        Page<Product> page = productRepository.findByCategory(categoryId, pageable);
+        if (page.isEmpty()) {
+            throw new EntityNotFoundException("Products not found with category id: " + categoryId);
+        }
+        return page.map(this::convertToDTO);
     }
     @Override
     public List<ProductDTO> searchProducts(String namePart, BigDecimal minPrice, BigDecimal maxPrice) {
-        return productRepository
-                .searchProducts(namePart, minPrice, maxPrice)
-                .stream()
+        List<Product> list = productRepository.searchProducts(namePart, minPrice, maxPrice);
+        if (list.isEmpty()) {
+            throw new EntityNotFoundException("Products not found with name: " + namePart
+                                            + " in range " + minPrice + " and " + maxPrice);
+        }
+        return list.stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
     }
