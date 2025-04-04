@@ -15,6 +15,10 @@ spring:
     change-log: classpath:db/changelog/db.changelog-master.xml
     enabled: true
 
+logging:
+  level:
+    liquibase: DEBUG
+
 server:
   port: 8080
   servlet:
